@@ -26,6 +26,18 @@ What is worth blocking on, and what is fine to skim.
 
 What you ran, and what you checked by hand.
 
+## CI scope (platform-api only, delete elsewhere)
+
+On a pull request, platform-api runs only the tests affected by your change.
+Add the `full-ci` label to force the full suite. It is required when the
+change touches migrations or the schema, shared utilities (`src/lib`),
+config, env or workflow files, shared test fixtures, or dynamic imports.
+
+Pushes to `dev` always run the full suite, and the dev deploy waits on it. If
+a pull request passed but breaks `dev`, report it in the team Slack thread.
+
+- [ ] platform-api only: `full-ci` label added if this touches any of the above (or N/A).
+
 ## QA still to do
 
 Name an owner for each item. There is no separate QA team: whoever opens the
