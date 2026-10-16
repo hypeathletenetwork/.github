@@ -28,15 +28,20 @@ What you ran, and what you checked by hand.
 
 ## CI scope (platform-api only, delete elsewhere)
 
-On a pull request, platform-api runs only the tests affected by your change.
-Add the `full-ci` label to force the full suite. It is required when the
-change touches migrations or the schema, shared utilities (`src/lib`),
-config, env or workflow files, shared test fixtures, or dynamic imports.
+A platform-api pull request runs only the tests that import the files it
+changed. It runs the whole suite on its own for anything outside TypeScript in
+`src/` and `tests/` (migrations, config, workflow, setup and data files), for
+a deleted file, or when no test imports the change. Draft pull requests skip
+the suite until they are ready, or carry the `run-ci` label.
+
+Add the `full-ci` label to force the full suite when a TypeScript-only change
+could reach code the tests load without importing it: dynamic imports, routes
+or plugins registered at runtime, or helpers and fixtures shared widely.
 
 Pushes to `dev` always run the full suite, and the dev deploy waits on it. If
 a pull request passed but breaks `dev`, report it in the team Slack thread.
 
-- [ ] platform-api only: `full-ci` label added if this touches any of the above (or N/A).
+- [ ] platform-api only: `full-ci` label added if the change could reach code the tests do not import (or N/A).
 
 ## QA still to do
 
