@@ -1,0 +1,6 @@
+# Code owners (HAM-2227). Every file in this repo is an org-wide default (the
+# pull request template, SECURITY.md, CONTRIBUTING.md) that applies to every
+# repo without its own copy, so the leads team owns all of it, this file
+# included. Owned by the team, not by people, so the list of who can approve
+# stays in one place.
+*                                   @hypeathletenetwork/leads
